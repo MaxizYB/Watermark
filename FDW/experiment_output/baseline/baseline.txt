@@ -1,0 +1,65 @@
+
+============================================================
+[FDW] Generating 1 images
+============================================================
+  clean: TPR=1.0000 Acc=1.0000
+  jpeg_75: TPR=1.0000 Acc=1.0000
+  jpeg_50: TPR=1.0000 Acc=1.0000
+  jpeg_25: TPR=1.0000 Acc=0.9980
+  gauss_blur_4: TPR=1.0000 Acc=0.9883
+  gauss_noise_005: TPR=1.0000 Acc=1.0000
+  crop_080: TPR=1.0000 Acc=0.9961
+  crop_060: TPR=1.0000 Acc=0.8945
+  rotate_15: TPR=1.0000 Acc=0.9980
+  rotate_45: TPR=1.0000 Acc=1.0000
+  scale_075: TPR=1.0000 Acc=1.0000
+  resize_025: TPR=1.0000 Acc=0.9961
+  brightness_2: TPR=1.0000 Acc=1.0000
+  color_jitter: TPR=1.0000 Acc=1.0000
+  adversarial_8: TPR=1.0000 Acc=1.0000
+  stirmark_rst: TPR=0.0000 Acc=0.5137
+  stirmark_all: TPR=0.0000 Acc=0.5449
+
+============================================================
+[GS] Generating 1 images
+============================================================
+  clean: TPR=1.0000 Acc=1.0000
+  jpeg_75: TPR=1.0000 Acc=1.0000
+  jpeg_50: TPR=1.0000 Acc=1.0000
+  jpeg_25: TPR=1.0000 Acc=1.0000
+  gauss_blur_4: TPR=1.0000 Acc=0.9570
+  gauss_noise_005: TPR=1.0000 Acc=1.0000
+  crop_080: TPR=1.0000 Acc=1.0000
+  crop_060: TPR=1.0000 Acc=0.9609
+  rotate_15: TPR=0.0000 Acc=0.5273
+  rotate_45: TPR=0.0000 Acc=0.4883
+  scale_075: TPR=0.0000 Acc=0.5234
+  resize_025: TPR=1.0000 Acc=1.0000
+  brightness_2: TPR=1.0000 Acc=1.0000
+  color_jitter: TPR=1.0000 Acc=1.0000
+  adversarial_8: TPR=1.0000 Acc=1.0000
+  stirmark_rst: TPR=0.0000 Acc=0.4844
+  stirmark_all: TPR=0.0000 Acc=0.5234
+
+============================================================
+[DWDCT] Generating 1 images
+============================================================
+  clean: Acc=0.7188
+  jpeg_75: Acc=0.6641
+  jpeg_50: Acc=0.5703
+  jpeg_25: Acc=0.5234
+  gauss_blur_4: Acc=0.5078
+  gauss_noise_005: Acc=0.7461
+  crop_080: Acc=0.6562
+  crop_060: Acc=0.5703
+  rotate_15: Acc=0.5039
+  rotate_45: Acc=0.5117
+  scale_075: Acc=0.5117
+  resize_025: Acc=0.5039
+  brightness_2: Acc=0.4922
+  color_jitter: Acc=0.8438
+  adversarial_8: Acc=0.7812
+  stirmark_rst: Acc=0.5352
+  stirmark_all: Acc=0.4961
+
+[INFO] Run 'quality' experiment first to generate Table 1 summary with CLIP scores

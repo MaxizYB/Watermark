@@ -1,0 +1,314 @@
+{
+  "fdw": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_75": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_50": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.998046875,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.98828125,
+      "std_acc": 0.0
+    },
+    "gauss_noise_005": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "crop_080": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.99609375,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.89453125,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.998046875,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "resize_025": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.99609375,
+      "std_acc": 0.0
+    },
+    "brightness_2": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "color_jitter": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "adversarial_8": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "stirmark_rst": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.513671875,
+      "std_acc": 0.0
+    },
+    "stirmark_all": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.544921875,
+      "std_acc": 0.0
+    }
+  },
+  "gs": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_75": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_50": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.95703125,
+      "std_acc": 0.0
+    },
+    "gauss_noise_005": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "crop_080": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9609375,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.52734375,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.48828125,
+      "std_acc": 0.0
+    },
+    "scale_075": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.5234375,
+      "std_acc": 0.0
+    },
+    "resize_025": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "brightness_2": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "color_jitter": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "adversarial_8": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "stirmark_rst": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.484375,
+      "std_acc": 0.0
+    },
+    "stirmark_all": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.5234375,
+      "std_acc": 0.0
+    }
+  },
+  "dwdct": {
+    "clean": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.71875,
+      "std_acc": 0.0
+    },
+    "jpeg_75": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.6640625,
+      "std_acc": 0.0
+    },
+    "jpeg_50": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.5703125,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.5234375,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.5078125,
+      "std_acc": 0.0
+    },
+    "gauss_noise_005": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.74609375,
+      "std_acc": 0.0
+    },
+    "crop_080": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.65625,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.5703125,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.50390625,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.51171875,
+      "std_acc": 0.0
+    },
+    "scale_075": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.51171875,
+      "std_acc": 0.0
+    },
+    "resize_025": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.50390625,
+      "std_acc": 0.0
+    },
+    "brightness_2": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.4921875,
+      "std_acc": 0.0
+    },
+    "color_jitter": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.84375,
+      "std_acc": 0.0
+    },
+    "adversarial_8": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.78125,
+      "std_acc": 0.0
+    },
+    "stirmark_rst": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.53515625,
+      "std_acc": 0.0
+    },
+    "stirmark_all": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.49609375,
+      "std_acc": 0.0
+    }
+  }
+}

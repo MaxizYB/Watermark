@@ -1,0 +1,192 @@
+{
+  "hw8_256b": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9921875,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.95703125,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.5234375,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.52734375,
+      "std_acc": 0.0
+    }
+  },
+  "hw4_1024b": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9912109375,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.8759765625,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.8388671875,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.5078125,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.4814453125,
+      "std_acc": 0.0
+    }
+  },
+  "hw4_512b_repeat": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.98828125,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.916015625,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.880859375,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.490234375,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.517578125,
+      "std_acc": 0.0
+    }
+  },
+  "hw4_512b_repeat_fdinit": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.984375,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.92578125,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.517578125,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.505859375,
+      "std_acc": 0.0
+    }
+  },
+  "hw2_4096b": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.924560546875,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.775146484375,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.71142578125,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.65673828125,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.499755859375,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.497802734375,
+      "std_acc": 0.0
+    }
+  }
+}

@@ -160,7 +160,7 @@ def run_method(args, method: str, pipe, attack_fn, ref_model=None,
         # Apply attack
         image_attacked = attack_fn(image_w)
 
-        # Blind geometric correction: scale (black border) + rotation (FFT template)
+        # Blind geometric correction: preprocess (scale+translate) → rotation
         if method == 'fdw' and args.geo_correct and args.use_template_injection:
             from attacks import detect_and_correct_geom
             img_tensor = transform_img(image_attacked).unsqueeze(0).to(text_embeddings.dtype).to(device)

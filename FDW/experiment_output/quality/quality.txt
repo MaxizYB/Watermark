@@ -1,0 +1,32 @@
+
+[Quality] FDW
+
+[Quality] GS
+
+[Quality] DWDCT
+
+[Quality] CLEAN
+
+============================================================
+Table 5: Image Quality (CLIP Score)
+============================================================
+  fdw         : 0.1865 ± 0.0000  (t=nan, p=nan)
+  gs          : 0.2803 ± 0.0000  (t=nan, p=nan)
+  dwdct       : 0.2784 ± 0.0000  (t=nan, p=nan)
+  clean       : 0.2772 ± 0.0000  (baseline)
+
+[Quality] FDW
+
+[Quality] GS
+
+[Quality] DWDCT
+
+[Quality] CLEAN
+
+============================================================
+Table 5: Image Quality (CLIP Score)
+============================================================
+  fdw         : 0.2753 ± 0.0000  (t=nan, p=nan)
+  gs          : 0.2360 ± 0.0000  (t=nan, p=nan)
+  dwdct       : 0.2784 ± 0.0000  (t=nan, p=nan)
+  clean       : 0.2772 ± 0.0000  (baseline)

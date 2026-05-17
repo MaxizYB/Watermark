@@ -220,11 +220,33 @@ def detect_rotation_ring(z_T: torch.Tensor) -> float:
 
 def detect_and_correct_rotation(z_T: torch.Tensor,
                                  attacked_img: Image.Image,
-                                 img_size: int = 512) -> tuple:
+                                 img_size: int = 512,
+                                 score_fn=None) -> tuple:
     detected = detect_rotation_ring(z_T)
     corr_angle = (-detected) % 90
     if corr_angle > 45:
         corr_angle -= 90
+
+    if score_fn is not None:
+        candidates = [-detected, -detected + 90, -detected - 90, -detected + 180]
+        candidates = list(set(candidates))
+        best_acc = -1.0
+        best_corr = corr_angle
+        best_img = None
+        for cand in candidates:
+            unrot = attacked_img.rotate(-cand, resample=Image.BICUBIC,
+                                         expand=True, fillcolor=(255, 255, 255))
+            uw, uh = unrot.size
+            left = (uw - img_size) // 2
+            top = (uh - img_size) // 2
+            crop = unrot.crop((left, top, left + img_size, top + img_size))
+            acc = score_fn(crop)
+            if acc > best_acc:
+                best_acc = acc
+                best_corr = cand
+                best_img = crop
+        return best_img, detected, best_corr
+
     unrotated = attacked_img.rotate(-corr_angle, resample=Image.BICUBIC,
                                      expand=True, fillcolor=(255, 255, 255))
     uw, uh = unrotated.size
@@ -291,25 +313,73 @@ def detect_and_correct_scale(img: Image.Image, target_size: int = 512,
     return corrected, ratio, True
 
 
+def content_crop_resize(img: Image.Image, target_size: int = 512,
+                         black_threshold: int = 15) -> tuple:
+    """
+    Aggressive content cropping: remove any black borders and resize.
+    Does NOT check for symmetry — caller must decide when to use this.
+    Returns (resized_img, was_cropped).
+    """
+    W, H = img.size
+    left, top, right, bottom = detect_black_border(img, black_threshold)
+    content_w = right - left
+    content_h = bottom - top
+
+    if content_w <= 0 or content_h <= 0:
+        return img, False
+
+    cropped = img.crop((left, top, right, bottom))
+    corrected = cropped.resize((target_size, target_size), Image.BICUBIC)
+    return corrected, True
+
+
+def has_asymmetric_borders(img: Image.Image, img_size: int = 512,
+                            min_content_ratio: float = 0.5) -> bool:
+    """
+    Check if image has significant black borders that are NOT symmetric.
+    Returns True only if borders exist but are off-center (translation-like).
+    """
+    W, H = img.size
+    left, top, right, bottom = detect_black_border(img)
+    content_w = right - left
+    content_h = bottom - top
+    if content_w <= 0 or content_h <= 0:
+        return False
+    min_border = min(left, top, W - right, H - bottom)
+    if min_border <= H * 0.03:
+        return False
+    content_ratio = (content_w * content_h) / (W * H)
+    if content_ratio < min_content_ratio:
+        return False
+    border_top = top
+    border_bottom = H - bottom
+    border_left = left
+    border_right = W - right
+    symmetry_h = abs(border_top - border_bottom) / max(max(border_top, border_bottom), 1)
+    symmetry_w = abs(border_left - border_right) / max(max(border_left, border_right), 1)
+    is_symmetric = symmetry_h < 0.35 and symmetry_w < 0.35
+    return not is_symmetric
+
+
 def detect_and_correct_geom(z_T: torch.Tensor,
                              attacked_img: Image.Image,
-                             img_size: int = 512) -> tuple:
+                             img_size: int = 512,
+                             score_fn=None) -> tuple:
     """
-    Unified geometric correction: scale (black border) + rotation (FFT template).
-    1. Detect and remove black border (scale correction)
-    2. Detect and correct rotation via FFT template
-    Returns (corrected_img, detected_angle, was_scale_corrected, was_rot_corrected).
+    Unified geometric correction.
+    1. Symmetric borders → scale correction → rotation
+    2. No borders → rotation only
+    If score_fn is provided, uses 4-way rotation search to resolve 90° ambiguity.
+    score_fn: callable(PIL.Image) -> float, returns watermark accuracy.
     """
     corrected, scale_ratio, scale_corrected = detect_and_correct_scale(attacked_img, img_size)
 
     detected_angle = 0.0
     rot_corrected = False
-    if scale_corrected:
-        corrected, detected_angle, _ = detect_and_correct_rotation(z_T, corrected, img_size)
-        rot_corrected = abs(detected_angle) > 0.5
-    else:
-        corrected, detected_angle, _ = detect_and_correct_rotation(z_T, attacked_img, img_size)
-        rot_corrected = abs(detected_angle) > 0.5
+    base_img = corrected if scale_corrected else attacked_img
+    corrected, detected_angle, _ = detect_and_correct_rotation(
+        z_T, base_img, img_size, score_fn=score_fn)
+    rot_corrected = abs(detected_angle) > 0.5
 
     return corrected, detected_angle, scale_corrected, rot_corrected
 
@@ -571,14 +641,49 @@ ATTACK_GROUPS = {
 
 
 def get_attack(name: str, pipe=None) -> AttackFn:
-    """Return attack function by name. Pass pipe for regeneration attack."""
+    """Return attack function by name. Pass pipe for regeneration attack.
+    Supports dynamic parameterized names: rotate_X, scale_XXX, crop_XXX, jpeg_X.
+    """
     if name == "regeneration":
         if pipe is None:
             raise ValueError("Regeneration attack requires a diffusion pipeline.")
         return lambda img: attack_regeneration(img, pipe)
-    if name not in ATTACK_REGISTRY:
-        raise KeyError(f"Unknown attack '{name}'. Available: {list(ATTACK_REGISTRY.keys())}")
-    return ATTACK_REGISTRY[name]
+    if name in ATTACK_REGISTRY:
+        return ATTACK_REGISTRY[name]
+    import re
+    m = re.match(r'rotate_([-\d.]+)$', name)
+    if m:
+        a = float(m.group(1))
+        return lambda img, _a=a: attack_rotate(img, _a)
+    m = re.match(r'scale_(\d+)$', name)
+    if m:
+        r = int(m.group(1)) / 100.0
+        return lambda img, _r=r: attack_scale(img, _r)
+    m = re.match(r'crop_(\d+)$', name)
+    if m:
+        r = int(m.group(1)) / 100.0
+        return lambda img, _r=r: attack_crop(img, _r)
+    m = re.match(r'jpeg_(\d+)$', name)
+    if m:
+        q = int(m.group(1))
+        return lambda img, _q=q: attack_jpeg(img, _q)
+    m = re.match(r'resize_(\d+)$', name)
+    if m:
+        r = int(m.group(1)) / 100.0
+        return lambda img, _r=r: attack_resize(img, _r)
+    m = re.match(r'gauss_noise_(\d+)$', name)
+    if m:
+        s = int(m.group(1)) / 100.0
+        return lambda img, _s=s: attack_gaussian_noise(img, _s)
+    m = re.match(r'gauss_blur_([\d.]+)$', name)
+    if m:
+        r = float(m.group(1))
+        return lambda img, _r=r: attack_gaussian_blur(img, _r)
+    m = re.match(r'brightness_([\d.]+)$', name)
+    if m:
+        f = float(m.group(1))
+        return lambda img, _f=f: attack_brightness(img, _f)
+    raise KeyError(f"Unknown attack '{name}'. Available: {list(ATTACK_REGISTRY.keys())}")
 
 
 def list_attacks() -> list:

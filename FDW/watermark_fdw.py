@@ -173,7 +173,7 @@ def build_x_template(h: int = 64, w: int = 64,
     """
     MaXsive-style sparse X-template for the Fourier domain.
     Each of the 2 crossing lines has 8 discrete sampling points
-    (4 radii × 2 directions), totalling 16 points — not a thick band.
+    (4 radii × 2 directions), totalling 16 points.
     Radii from 0.2*(w/2) to 0.5*(w/2) with interval 0.1*(w/2).
     """
     mask2d = torch.zeros(h, w)
@@ -332,6 +332,46 @@ def blind_detect_rotation(img: 'PIL.Image.Image',
     return best_a
 
 
+# ── Spatial permutation for crop robustness ─────────────────────────────────
+
+class SpatialPermuter:
+    """Fixed spatial permutation of latent [B, C, H, W] on the (H, W) grid.
+
+    Scatters each watermark bit's copies across the full spatial extent so that
+    a crop attack can only *partially* degrade every bit instead of completely
+    destroying some bits.
+    """
+
+    _cache = {}
+
+    @classmethod
+    def get(cls, hw=64, seed=42):
+        key = (hw, seed)
+        if key not in cls._cache:
+            cls._cache[key] = cls(hw, seed)
+        return cls._cache[key]
+
+    def __init__(self, hw=64, seed=42):
+        self.hw = hw
+        n = hw * hw
+        rng = np.random.RandomState(seed)
+        perm = rng.permutation(n)
+        self.perm = torch.from_numpy(perm).long()
+        self.inv_perm = torch.from_numpy(np.argsort(perm)).long()
+
+    def permute(self, z):
+        B, C, H, W = z.shape
+        z_flat = z.reshape(B * C, H * W)
+        z_flat_perm = z_flat[:, self.perm.to(z.device)]
+        return z_flat_perm.reshape(B, C, H, W)
+
+    def inv_permute(self, z):
+        B, C, H, W = z.shape
+        z_flat = z.reshape(B * C, H * W)
+        z_flat_inv = z_flat[:, self.inv_perm.to(z.device)]
+        return z_flat_inv.reshape(B, C, H, W)
+
+
 # ── Main FDW watermark class ─────────────────────────────────────────────────
 
 class FDW_Watermark:
@@ -364,7 +404,8 @@ class FDW_Watermark:
                  alpha_max: float = 0.015,
                  t_start: float = 0.2,
                  t_end: float = 0.6,
-                 use_fd_detect: bool = False):
+                 use_fd_detect: bool = False,
+                 use_spatial_perm: bool = True):
 
         self.ch = ch_factor
         self.hw = hw_factor
@@ -373,6 +414,8 @@ class FDW_Watermark:
         self.t_start = t_start
         self.t_end = t_end
         self.use_fd_detect = use_fd_detect
+        self.use_spatial_perm = use_spatial_perm
+        self._permuter = SpatialPermuter.get(64, seed=42) if use_spatial_perm else None
 
         self.latentlength = 4 * 64 * 64
         self.marklength = self.latentlength // (self.ch * self.hw * self.hw)
@@ -506,6 +549,10 @@ class FDW_Watermark:
         # 5. Frequency-domain enhancement
         w_star = fd_enhance_noise(w, m_tensor.float(), lambda_=self.lambda_freq)
 
+        # 6. Spatial permutation for crop robustness
+        if self._permuter is not None:
+            w_star = self._permuter.permute(w_star)
+
         return w_star
 
     def get_fdsc_template(self) -> torch.Tensor:
@@ -521,16 +568,14 @@ class FDW_Watermark:
             "Call create_watermark_and_return_w first"
         return self._template_mask, self._template_pattern
 
-    def eval_watermark(self, reversed_w: torch.Tensor) -> float:
-        """
-        Evaluate watermark accuracy from recovered latent z_T.
-        Returns bit accuracy of payload bits in [0, 1].
-        """
-        # ── Path A: spatial (GS-style) ──────────────────────────────────────
+    def _compute_accuracy(self, reversed_w: torch.Tensor) -> float:
+        if self._permuter is not None:
+            reversed_w = self._permuter.inv_permute(reversed_w)
+
         reversed_m_a = (reversed_w > 0).int()
         sd_bytes = self._decrypt(reversed_m_a.flatten().cpu().numpy())
         sd_tensor = torch.from_numpy(sd_bytes).reshape(1, 4, 64, 64).to(torch.uint8).to(reversed_w.device)
-        wm_voted = self._vote(sd_tensor)  # [1, wm_c, wm_h, wm_h]
+        wm_voted = self._vote(sd_tensor)
 
         if self.use_fd_detect and self._W_freq_template is not None:
             fd_bits = fd_detect(reversed_w, self._W_freq_template.float())
@@ -540,17 +585,28 @@ class FDW_Watermark:
             wm_b = self._vote(sd_fd_t)
             wm_voted = ((wm_voted.int() + wm_b.int()) >= 2).to(torch.uint8)
 
-        # ── 2× repetition decode: majority vote between two copies ──────────
         if self._ecc_repeat == 2:
             flat = wm_voted.flatten()
             half = self.payload_bits
             copy1 = flat[:half].int()
             copy2 = flat[half:2 * half].int()
-            recovered = ((copy1 + copy2) >= 1).to(torch.uint8)  # OR: either copy correct
+            recovered = ((copy1 + copy2) >= 1).to(torch.uint8)
             ref = self.watermark.flatten()[:half]
             correct = (recovered == ref).float().mean().item()
         else:
             correct = (wm_voted == self.watermark).float().mean().item()
+
+        return correct
+
+    def score_watermark(self, reversed_w: torch.Tensor) -> float:
+        return self._compute_accuracy(reversed_w)
+
+    def eval_watermark(self, reversed_w: torch.Tensor) -> float:
+        """
+        Evaluate watermark accuracy from recovered latent z_T.
+        Returns bit accuracy of payload bits in [0, 1].
+        """
+        correct = self._compute_accuracy(reversed_w)
 
         if correct >= self.tau_onebit:
             self.tp_onebit_count += 1

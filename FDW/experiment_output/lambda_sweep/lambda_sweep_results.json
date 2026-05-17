@@ -1,0 +1,302 @@
+{
+  "lambda=0.00": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.978515625,
+      "std_acc": 0.0
+    },
+    "gauss_noise_005": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9375,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.998046875,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    }
+  },
+  "lambda=0.04": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.984375,
+      "std_acc": 0.0
+    },
+    "gauss_noise_005": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.912109375,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.998046875,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    }
+  },
+  "lambda=0.08": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.990234375,
+      "std_acc": 0.0
+    },
+    "gauss_noise_005": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.888671875,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    }
+  },
+  "lambda=0.12": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.990234375,
+      "std_acc": 0.0
+    },
+    "gauss_noise_005": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.93359375,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9921875,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.998046875,
+      "std_acc": 0.0
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    }
+  },
+  "lambda=0.16": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.98828125,
+      "std_acc": 0.0
+    },
+    "gauss_noise_005": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.892578125,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.998046875,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    }
+  },
+  "lambda=0.20": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "jpeg_25": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "gauss_blur_4": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.982421875,
+      "std_acc": 0.0
+    },
+    "gauss_noise_005": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "crop_060": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.79296875,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.99609375,
+      "std_acc": 0.0
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.998046875,
+      "std_acc": 0.0
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    }
+  }
+}

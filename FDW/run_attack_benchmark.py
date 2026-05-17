@@ -133,7 +133,6 @@ def eval_attack(attack_name, images, watermarks, pipe, text_emb, args, device):
     for img, wm in zip(images, watermarks):
         attacked = attack_fn(img)
 
-        # Blind geometric correction: scale (black border) + rotation (FFT template)
         if args.geo_correct and isinstance(wm, FDW_Watermark) and args.use_template_injection:
             from attacks import detect_and_correct_geom
             img_t_tensor = transform_img(attacked).unsqueeze(0).to(text_emb.dtype).to(device)
@@ -142,7 +141,18 @@ def eval_attack(attack_name, images, watermarks, pipe, text_emb, args, device):
                 latents=latents_raw, text_embeddings=text_emb,
                 guidance_scale=1, num_inference_steps=args.num_inversion_steps,
             )
-            corrected_img, _, _, _ = detect_and_correct_geom(zT_raw, attacked, args.image_length)
+
+            def _score_fn(crop_img):
+                _t = transform_img(crop_img).unsqueeze(0).to(text_emb.dtype).to(device)
+                _lat = pipe.get_image_latents(_t, sample=False)
+                _rev = pipe.forward_diffusion(
+                    latents=_lat, text_embeddings=text_emb,
+                    guidance_scale=1, num_inference_steps=args.num_inversion_steps,
+                )
+                return wm.score_watermark(_rev)
+
+            corrected_img, _, _, _ = detect_and_correct_geom(
+                zT_raw, attacked, args.image_length, score_fn=_score_fn)
             img_t = transform_img(corrected_img).unsqueeze(0).to(text_emb.dtype).to(device)
         else:
             img_t = transform_img(attacked).unsqueeze(0).to(text_emb.dtype).to(device)
@@ -327,10 +337,10 @@ if __name__ == '__main__':
     parser.add_argument('--payload_bits', default=512, type=int)
     parser.add_argument('--use_ecc', action='store_true', default=True)
     parser.add_argument('--no_ecc', dest='use_ecc', action='store_false')
-    parser.add_argument('--lambda_freq', default=0.08, type=float)
+    parser.add_argument('--lambda_freq', default=0.02, type=float)
     parser.add_argument('--use_fdsc', action='store_true', default=True)
     parser.add_argument('--no_fdsc', dest='use_fdsc', action='store_false')
-    parser.add_argument('--alpha_max', default=0.015, type=float)
+    parser.add_argument('--alpha_max', default=0.0, type=float)
     parser.add_argument('--fdsc_t_start', default=0.2, type=float)
     parser.add_argument('--fdsc_t_end', default=0.6, type=float)
     parser.add_argument('--use_fd_detect', action='store_true', default=False)
@@ -341,7 +351,7 @@ if __name__ == '__main__':
                         help='Shallow mode: injection timestep t* (e.g. 0.3). Maxsive mode: start of window.')
     parser.add_argument('--template_t_end', default=1.0, type=float,
                         help='End of injection window (only used in maxsive mode)')
-    parser.add_argument('--template_gamma', default=8.0, type=float)
+    parser.add_argument('--template_gamma', default=4.0, type=float)
     parser.add_argument('--template_mode', default='shallow', choices=['shallow', 'maxsive'],
                         help='Template injection mode: shallow (ShallowDiffuse, single step at t*) or maxsive (all steps)')
     parser.add_argument('--use_pixel_template', action='store_true', default=False)

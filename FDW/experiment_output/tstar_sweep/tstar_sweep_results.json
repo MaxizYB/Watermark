@@ -1,0 +1,164 @@
+{
+  "t*=0.1": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9990234375,
+      "std_acc": 0.0013810679320049757
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9716796875,
+      "std_acc": 0.026240290708094537
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9892578125,
+      "std_acc": 0.01242961138804478
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "_clip_score": 0.28621476143598557
+  },
+  "t*=0.2": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.998046875,
+      "std_acc": 0.0027621358640099515
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9189453125,
+      "std_acc": 0.0041432037960149265
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.986328125,
+      "std_acc": 0.013810679320049757
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9873046875,
+      "std_acc": 0.017953883116064683
+    },
+    "_clip_score": 0.29490482807159424
+  },
+  "t*=0.3": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.955078125,
+      "std_acc": 0.052480581416189075
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9609375,
+      "std_acc": 0.05524271728019903
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.927734375,
+      "std_acc": 0.09391261937633834
+    },
+    "_clip_score": 0.2967206537723541
+  },
+  "t*=0.4": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9873046875,
+      "std_acc": 0.017953883116064683
+    },
+    "rotate_15": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.7939453125,
+      "std_acc": 0.09805582317235327
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9912109375,
+      "std_acc": 0.00966747552403483
+    },
+    "scale_075": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.9296875,
+      "std_acc": 0.09115048351232839
+    },
+    "_clip_score": 0.2900479733943939
+  },
+  "t*=0.5": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.99609375,
+      "std_acc": 0.005524271728019903
+    },
+    "rotate_15": {
+      "tpr_detection": 0.5,
+      "tpr_traceability": 0.5,
+      "mean_acc": 0.7451171875,
+      "std_acc": 0.24997329569290058
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.841796875,
+      "std_acc": 0.1988737822087165
+    },
+    "scale_075": {
+      "tpr_detection": 0.5,
+      "tpr_traceability": 0.5,
+      "mean_acc": 0.697265625,
+      "std_acc": 0.2541164994889155
+    },
+    "_clip_score": 0.2879963219165802
+  },
+  "t*=0.6": {
+    "clean": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 1.0,
+      "std_acc": 0.0
+    },
+    "rotate_15": {
+      "tpr_detection": 0.5,
+      "tpr_traceability": 0.5,
+      "mean_acc": 0.755859375,
+      "std_acc": 0.3286941678171842
+    },
+    "rotate_45": {
+      "tpr_detection": 1.0,
+      "tpr_traceability": 1.0,
+      "mean_acc": 0.994140625,
+      "std_acc": 0.005524271728019903
+    },
+    "scale_075": {
+      "tpr_detection": 0.0,
+      "tpr_traceability": 0.0,
+      "mean_acc": 0.5146484375,
+      "std_acc": 0.006905339660024878
+    },
+    "_clip_score": 0.29774436354637146
+  }
+}

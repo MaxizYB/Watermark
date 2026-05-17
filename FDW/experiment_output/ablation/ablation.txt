@@ -1,0 +1,12 @@
+
+--- Ablation: GS baseline (hw=8, 256b) ---
+
+--- Ablation: Expand (hw=4, 1024b) ---
+
+--- Ablation: + FD-Init ---
+
+--- Ablation: + Repetition Code ---
+
+--- Ablation: + X-Template (no correct) ---
+
+--- Ablation: FDW Full ---
